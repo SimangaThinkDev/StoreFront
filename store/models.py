@@ -1,0 +1,47 @@
+from django.db import models
+
+# Create your models here.
+
+class Product(models.Model):
+
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+    inventory = models.IntegerField()
+    created_at = models.DateTimeField( auto_now_add=True )
+    last_update = models.DateTimeField( auto_now=True )
+
+class Customer(models.Model):
+    MEMBERSHIP_BRONZE = 'B'
+    MEMBERSHIP_SILVER = 'S'
+    MEMBERSHIP_GOLD = 'G'
+
+    MEMBERSHIP_CHOICES = [
+        (MEMBERSHIP_BRONZE, 'Bronze'),
+        (MEMBERSHIP_SILVER, 'Silver'),
+        (MEMBERSHIP_GOLD, 'Gold'),
+    ]
+
+    first_name = models.CharField( max_length=80 )
+    last_name  = models.CharField( max_length=80 )
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=255) # I do not get this one...
+    birth_date = models.DateField(null=True)
+    membership = models.CharField( max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE )
+
+
+class Order(models.Model):
+
+    PENDING_STATUS = 'P'
+    COMPLETE_STATUS = 'C'
+    FAILED_STATUS = 'F'
+
+    PAYMENT_STATUS_ENUM = [
+        (PENDING_STATUS, 'Pending'),
+        (COMPLETE_STATUS, 'Complete'),
+        (FAILED_STATUS, 'Failed'),
+    ]
+
+    placed_at = models.DateTimeField(auto_now_add=True) # Automatically populated at creation
+    payment_status = models.CharField( max_length=1, choices=PAYMENT_STATUS_ENUM, default=PENDING_STATUS )
+

@@ -31,7 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'playground',
+    'store',
+    'tags',
     'debug_toolbar',
     'django.contrib.admin',
     'django.contrib.auth',
