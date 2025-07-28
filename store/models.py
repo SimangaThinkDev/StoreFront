@@ -36,6 +36,12 @@ class Customer(models.Model):
     # Relationships
     order = models.ForeignKey( 'Order', on_delete=models.CASCADE )
 
+    class Meta:
+        """Where we define metadata about our model"""
+        indexes = [
+            models.Index( fields=['first_name', 'last_name'] )
+        ]
+
 
 class Order(models.Model):
 
