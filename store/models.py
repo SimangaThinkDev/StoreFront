@@ -26,20 +26,18 @@ class Customer(models.Model):
         (MEMBERSHIP_GOLD, 'Gold'),
     ]
 
-    first_name = models.CharField( max_length=80 )
-    last_name  = models.CharField( max_length=80 )
+    first_name = models.CharField(max_length=80)
+    last_name = models.CharField(max_length=80)
     email = models.EmailField(unique=True)
-    phone = models.CharField(max_length=255) # I do not get this one...
+    phone = models.CharField(max_length=255)
     birth_date = models.DateField(null=True)
-    membership = models.CharField( max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE )
-
-    # Relationships
-    order = models.ForeignKey( 'Order', on_delete=models.CASCADE )
+    membership = models.CharField(max_length=1, choices=MEMBERSHIP_CHOICES, default=MEMBERSHIP_BRONZE)
+    order_id = models.IntegerField()
 
     class Meta:
         """Where we define metadata about our model"""
         indexes = [
-            models.Index( fields=['first_name', 'last_name'] )
+            models.Index(fields=['first_name', 'last_name'])
         ]
 
 

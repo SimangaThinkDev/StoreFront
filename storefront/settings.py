@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'playground',
     'likes',
     'store',
     'tags',
@@ -83,8 +84,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'storefront',
         'HOST': 'localhost',
-        'USER': 'root',
-        'PASSWORD': 'TestPass@1234'
+        'USER': 'django_guy',
+        'PASSWORD': 'TestPass@1234',
+        'PORT': '3306',
     }
 }
 
